@@ -12,7 +12,7 @@
 	"activationEvents": [
 		"onCommand:gzipdecompressor.helloWorld"
 	],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
