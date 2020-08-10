@@ -1,6 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const zlib = require('zlib');
+const fs = require('fs');
 require('./trace');
 
 // this method is called when your extension is activated
@@ -15,18 +17,46 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "gzipdecompressor" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('gzipdecompressor.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+	const myScheme = 'gz.decompress';
+	const ext = '.log';
+    const myProvider = new class {
+        constructor() {
+            // emitter and its event
+            this.onDidChangeEmitter = new vscode.EventEmitter();
+            this.onDidChange = this.onDidChangeEmitter.event;
+		}
+		
+        async provideTextDocumentContent(uri) {
+            let fileData = await this.readFile(uri.path.slice(0, ext.length*-1));
+            return fileData;
+		}
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from GzipDecompressor!');
-	});
+		async readFile(fileUri) {
+			var src = fs.createReadStream(fileUri);
+			const stream = src.pipe(zlib.createGunzip());
+			return new Promise((resolve, reject) => {
+				stream.on('error', function(err) {
+					console.log(err);
+					resolve(reject);
+				})
+		
+				stream.on('data', function(data) {
+					resolve(data.toString());
+				})
+			})
+		}
+	};
+	
+    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(myScheme, myProvider));
 
-	context.subscriptions.push(disposable);
+    context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', async (uri) => {
+		if (uri == undefined) return;
+		let newUri = vscode.Uri.parse(myScheme + ':' + uri._fsPath + ext);
+		let doc = await vscode.workspace.openTextDocument(newUri);
+		await vscode.window.showTextDocument(doc, { preview: false });
+    }));
 }
+
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
