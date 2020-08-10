@@ -10,16 +10,25 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:gzipdecompressor.helloWorld"
+		"onCommand:gz.decompress"
 	],
 	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "gzipdecompressor.helloWorld",
-				"title": "Hello World"
+				"command": "gz.decompress",
+				"title": "gzip decompress"
 			}
-		]
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"command": "gz.decompress",
+					"group": "navigation",
+					"when": "resourceExtname == .gz"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
