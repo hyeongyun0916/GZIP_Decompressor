@@ -1,25 +1,50 @@
 {
 	"name": "gzipdecompressor",
-	"displayName": "GzipDecompressor",
+	"displayName": "Gzip Decompressor",
 	"description": "gzip decompressor",
+	"license": "LICENSE",
 	"version": "0.0.1",
+	"bugs": {
+	  "url": "https://github.com/hyeongyun0916/GZIP_Decompressor/issues"
+	},
+	"repository": {
+	  "type": "git",
+	  "url": "https://github.com/hyeongyun0916/GZIP_Decompressor.git"
+	},
 	"engines": {
 		"vscode": "^1.46.0"
 	},
+	"keywords": [
+	  "vscode",
+	  "gzip",
+	  "gz",
+	  "decompress",
+	  "ungzip",
+	  "extract"
+	],
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:gzipdecompressor.helloWorld"
+		"onCommand:gz.decompress"
 	],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "gzipdecompressor.helloWorld",
-				"title": "Hello World"
+				"command": "gz.decompress",
+				"title": "gzip decompress"
 			}
-		]
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"command": "gz.decompress",
+					"group": "navigation",
+					"when": "resourceExtname == .gz"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
