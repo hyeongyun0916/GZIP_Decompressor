@@ -1,11 +1,27 @@
 {
 	"name": "gzipdecompressor",
-	"displayName": "GzipDecompressor",
+	"displayName": "Gzip Decompressor",
 	"description": "gzip decompressor",
+	"license": "LICENSE",
 	"version": "0.0.1",
+	"bugs": {
+	  "url": "https://github.com/hyeongyun0916/GZIP_Decompressor/issues"
+	},
+	"repository": {
+	  "type": "git",
+	  "url": "https://github.com/hyeongyun0916/GZIP_Decompressor.git"
+	},
 	"engines": {
 		"vscode": "^1.46.0"
 	},
+	"keywords": [
+	  "vscode",
+	  "gzip",
+	  "gz",
+	  "decompress",
+	  "ungzip",
+	  "extract"
+	],
 	"categories": [
 		"Other"
 	],
