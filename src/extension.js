@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 const zlib = require('zlib');
 const fs = require('fs');
+const process = require('process');
 require('./trace');
 
 // this method is called when your extension is activated
@@ -15,7 +16,7 @@ function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "gzipdecompressor" is now active!');
+	console.log('Congratulations, your extension "gzipdecompressor" is now active!', process.platform);
 
 	const myScheme = 'gz.decompress';
 	const ext = '.log';
@@ -50,9 +51,9 @@ function activate(context) {
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(myScheme, myProvider));
 
     context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', async (uri) => {
-		vscode.window.showInformationMessage(JSON.stringify(uri));
 		if (uri == undefined) return;
-		let newUri = vscode.Uri.parse(myScheme + ':' + uri._fsPath + ext);
+		let path = process.platform == 'win32' ? uri.path.substr(1).replace(/\//g,'\\') : uri.path;
+		let newUri = vscode.Uri.parse(myScheme + ':' + path + ext);
 		let doc = await vscode.workspace.openTextDocument(newUri);
 		await vscode.window.showTextDocument(doc, { preview: false });
     }));
