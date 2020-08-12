@@ -50,6 +50,7 @@ function activate(context) {
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(myScheme, myProvider));
 
     context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', async (uri) => {
+		vscode.window.showInformationMessage(JSON.stringify(uri));
 		if (uri == undefined) return;
 		let newUri = vscode.Uri.parse(myScheme + ':' + uri._fsPath + ext);
 		let doc = await vscode.workspace.openTextDocument(newUri);
