@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const zlib = require('zlib');
 const fs = require('fs');
 const process = require('process');
+// @ts-ignore
 require('./trace');
 
 // this method is called when your extension is activated

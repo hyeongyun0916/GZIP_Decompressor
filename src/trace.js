@@ -8,6 +8,7 @@
         const callee = new Error().stack[1];
         Error.prepareStackTrace = originalPrepareStackTrace;
         // const relativeFileName = path.relative(process.cwd(), callee.getFileName());
+        // @ts-ignore
         const prefix = `${callee.getFileName()}:${callee.getLineNumber()}:${callee.getFunctionName()}:\n`;
         if (typeof firstArgument === 'string') {
             originalLoggingMethod(prefix + ' ' + firstArgument, ...otherArguments);
