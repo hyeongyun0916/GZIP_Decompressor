@@ -1,8 +1,9 @@
 # GZIP Decompressor
 
+[![version](https://img.shields.io/vscode-marketplace/v/hyunkyunmoon.gzipdecompressor.svg)](https://marketplace.visualstudio.com/items?itemName=hyunkyunmoon.gzipdecompressor)
+[![installs](https://img.shields.io/vscode-marketplace/d/hyunkyunmoon.gzipdecompressor.svg)](https://marketplace.visualstudio.com/items?itemName=hyunkyunmoon.gzipdecompressor)
 [![GitHub issues](https://img.shields.io/github/issues/hyeongyun0916/GZIP_Decompressor.svg)](https://github.com/hyeongyun0916/GZIP_Decompressor/issues)
 [![GitHub license button](https://img.shields.io/github/license/hyeongyun0916/GZIP_Decompressor.svg)](https://github.com/hyeongyun0916/GZIP_Decompressor/blob/master/LICENSE)
-[![VS Code marketplace button](https://vsmarketplacebadge.apphb.com/installs/hyunkyunmoon.gzipdecompressor.svg)](https://marketplace.visualstudio.com/items?itemName=hyunkyunmoon.gzipdecompressor)
 
 gzip decompressor for Visual Studio Code
 
