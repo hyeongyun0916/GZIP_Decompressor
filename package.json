@@ -4,6 +4,7 @@
 	"description": "gzip decompressor",
 	"license": "LICENSE",
 	"version": "0.0.1",
+	"publisher": "HyunKyunMoon",
 	"bugs": {
 	  "url": "https://github.com/hyeongyun0916/GZIP_Decompressor/issues"
 	},
