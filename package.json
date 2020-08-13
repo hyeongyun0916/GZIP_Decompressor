@@ -3,7 +3,7 @@
 	"displayName": "Gzip Decompressor",
 	"description": "gzip decompressor",
 	"license": "LICENSE",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"publisher": "HyunKyunMoon",
 	"bugs": {
 		"url": "https://github.com/hyeongyun0916/GZIP_Decompressor/issues"
