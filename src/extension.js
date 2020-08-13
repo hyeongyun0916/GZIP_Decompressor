@@ -55,7 +55,7 @@ function activate(context) {
 		if (uri == undefined) {
 			let w = vscode.window;
 			if (w.activeTextEditor == undefined
-				 || w.activeTextEditor.document.uri.scheme == myScheme) {
+				 || w.activeTextEditor.document.uri.path.substr(-3) != '.gz') {
 				uri = await vscode.window.showInputBox({
 					prompt: "Enter value in gzip",
 					placeHolder: "address",
