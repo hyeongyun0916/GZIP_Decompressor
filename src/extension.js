@@ -52,7 +52,20 @@ function activate(context) {
 	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(myScheme, myProvider));
 
 	context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', async (uri) => {
-		if (uri == undefined) return;
+		if (uri == undefined) {
+			let w = vscode.window;
+			if (w.activeTextEditor == undefined
+				 || w.activeTextEditor.document.uri.scheme == myScheme) {
+				uri = await vscode.window.showInputBox({
+					prompt: "Enter value in gzip",
+					placeHolder: "address",
+					value: vscode.workspace.rootPath
+				});
+				uri = vscode.Uri.file(uri);
+			} else {
+				uri = w.activeTextEditor.document.uri;
+			}
+		};
 		let path = process.platform == 'win32' ? uri.path.substr(1).replace(/\//g, '\\') : uri.path;
 		let newUri = vscode.Uri.parse(myScheme + ':' + path + ext);
 		let doc = await vscode.workspace.openTextDocument(newUri);
