@@ -61,7 +61,7 @@ function activate(context) {
 					placeHolder: "address",
 					value: vscode.workspace.rootPath
 				});
-				uri = vscode.Uri.file(uri);
+				uri = vscode.Uri.file(uri == undefined ? '' : uri);
 			} else {
 				uri = w.activeTextEditor.document.uri;
 			}
