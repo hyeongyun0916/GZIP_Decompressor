@@ -17,6 +17,15 @@ Display a text file in gzip
 if you open *.gz file, then you can see the decompress button
 ![Title Button](images/title-button.gif)
 
+*command palette*
+
+1. open *command palette*.
+2. select *gzip decompress*.
+3. Enter the `absolute path` of the *gz file*.
+
+
+![Command Palette](images/command-palette.gif)
+
 ## Installation
 
 1. Install *Visual Studio Code*
