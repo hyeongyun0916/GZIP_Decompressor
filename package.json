@@ -44,6 +44,18 @@
 					"group": "navigation",
 					"when": "resourceExtname == .gz"
 				}
+			],
+			"explorer/context": [
+			  {
+				"command": "gz.decompress",
+				"when": "resourceExtname == .gz"
+			  }
+			],
+			"editor/title/context": [
+			  {
+				"command": "gz.decompress",
+				"when": "resourceExtname == .gz"
+			  }
 			]
 		}
 	},
