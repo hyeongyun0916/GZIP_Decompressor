@@ -13,8 +13,11 @@ Display a text file in gzip
 
 ## Main Features
 
-*gzip decompress* button\
-if you open *.gz file, then you can see the decompress button
+*gzip decompress button*
+
+1. open *.gz file
+2. click decompress button
+   
 ![Title Button](images/title-button.gif)
 
 *command palette*
@@ -23,8 +26,14 @@ if you open *.gz file, then you can see the decompress button
 2. select *gzip decompress*.
 3. Enter the `absolute path` of the *gz file*.
 
-
 ![Command Palette](images/command-palette.gif)
+
+*right click*
+
+1. right click on the *.gz file* or open *.gz file* and right click on the *editor's title*
+2. select *gzip decompress*.
+
+![Right Click](images/right-click.gif)
 
 ## Installation
 
