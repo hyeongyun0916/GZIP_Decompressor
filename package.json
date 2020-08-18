@@ -27,7 +27,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:gz.decompress"
+		"*"
 	],
 	"main": "./src/extension.js",
 	"contributes": {
@@ -35,6 +35,10 @@
 			{
 				"command": "gz.decompress",
 				"title": "gzip decompress"
+			},
+			{
+			  "command": "gz.dialogopen",
+			  "title": "Show content of the selected .gz in an Open dialog"
 			}
 		],
 		"menus": {
