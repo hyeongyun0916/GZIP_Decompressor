@@ -3,7 +3,7 @@
 	"displayName": "Gzip Decompressor",
 	"description": "gzip decompressor",
 	"license": "LICENSE",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"publisher": "HyunKyunMoon",
 	"bugs": {
 		"url": "https://github.com/hyeongyun0916/GZIP_Decompressor/issues"
@@ -37,8 +37,8 @@
 				"title": "gzip decompress"
 			},
 			{
-			  "command": "gz.dialogopen",
-			  "title": "Show content of the selected .gz in an Open dialog"
+				"command": "gz.dialogopen",
+				"title": "Show content of the selected .gz in an Open dialog"
 			}
 		],
 		"menus": {
