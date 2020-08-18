@@ -3,6 +3,7 @@
 	"displayName": "Gzip Decompressor",
 	"description": "gzip decompressor",
 	"license": "LICENSE",
+	"icon": "images/icon.png",
 	"version": "0.2.1",
 	"publisher": "HyunKyunMoon",
 	"bugs": {
@@ -34,7 +35,11 @@
 		"commands": [
 			{
 				"command": "gz.decompress",
-				"title": "gzip decompress"
+				"title": "gzip decompress",
+				"icon": {
+				  "light": "./images/gz-icon.svg",
+				  "dark": "./images/gz-icon-dark.svg"
+				}
 			},
 			{
 			  "command": "gz.dialogopen",
