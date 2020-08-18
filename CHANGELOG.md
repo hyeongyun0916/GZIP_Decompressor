@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.5.0] - 2020-08-18
+
+### Added
+
+- Decompress gzip with Dialog.
+
 ## [0.4.0] - 2020-08-14
 
 ### Added
@@ -30,7 +36,8 @@
 
 - Decompress gzip by button.
 
-[unreleased]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.1.0...v0.2.0
