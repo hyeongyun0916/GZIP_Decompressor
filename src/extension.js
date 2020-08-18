@@ -71,6 +71,15 @@ function activate(context) {
 		let doc = await vscode.workspace.openTextDocument(newUri);
 		await vscode.window.showTextDocument(doc, { preview: false });
 	}));
+
+    context.subscriptions.push(vscode.commands.registerCommand('gz.dialogopen', () => {
+        vscode.window.showOpenDialog({canSelectMany: true, canSelectFolders: false, filters: {'gz': ['gz']}}).then(fileUris => {
+			if (fileUris)
+				fileUris.forEach(function (fileUri) {
+					vscode.commands.executeCommand('gz.decompress', fileUri);
+				});
+        });
+    }));
 }
 
 exports.activate = activate;

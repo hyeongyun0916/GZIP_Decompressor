@@ -35,6 +35,14 @@ Display a text file in gzip
 
 ![Right Click](images/right-click.gif)
 
+*dialog*
+
+1. open *command palette*.
+2. select *Show content of the selected .gz in an Open dialog*.
+3. Select the gz file you want to see its contents.
+
+![Dialog](images/open-dialog.gif)
+
 ## Installation
 
 1. Install *Visual Studio Code*
