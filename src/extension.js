@@ -36,6 +36,7 @@ function activate(context) {
 		async readFile(fileUri) {
 			var src = fs.createReadStream(fileUri);
 			const stream = src.pipe(zlib.createGunzip());
+			var allData = '';
 			return new Promise((resolve, reject) => {
 				stream.on('error', function (err) {
 					console.log(err);
@@ -43,7 +44,11 @@ function activate(context) {
 				})
 
 				stream.on('data', function (data) {
-					resolve(data.toString());
+					allData += data.toString();
+				})
+
+				stream.on('end', function () {
+					resolve(allData);
 				})
 			})
 		}
