@@ -7,6 +7,8 @@
 
 gzip decompressor for Visual Studio Code
 
+*If you have any problems or questions, please let me know on the [Issues page](https://github.com/hyeongyun0916/GZIP_Decompressor/issues).*
+
 ## Description
 
 Display a text file in gzip
