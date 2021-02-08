@@ -7,11 +7,14 @@
 
 gzip decompressor for Visual Studio Code
 
-*If you have any problems or questions, please let me know on the [Issues page](https://github.com/hyeongyun0916/GZIP_Decompressor/issues).*
+*If you have any problems or questions, please let me know on the [Issues page](https://github.com/hyeongyun0916/GZIP_Decompressor/issues).*\
+*If you like it, please ★ [here](https://github.com/hyeongyun0916/GZIP_Decompressor/)*
 
 ## Description
 
-Display a text file in gzip
+> Display a text file in gzip.\
+This extension will be shown in `Log mode` after decompression.\
+If you want to see it in `plain mode`, use the `gzip decompress to plain menu`.
 
 ## Main Features
 

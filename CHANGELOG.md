@@ -2,11 +2,23 @@
 
 ## [Unreleased]
 
-## [1.1.0] - 2020-09-29
+## [1.2.0] - 2021-02-09
+
+### Added
+
+- Decompress gzip to plain.
+
+## [1.1.0] - 2021-02-09
 
 ### Fixed
 
 - Fixed when Failed on large-ish file.
+
+## [1.0.0] - 2020-08-19
+
+### Added
+
+- Added ICON
 
 ## [0.5.0] - 2020-08-18
 
@@ -42,8 +54,10 @@
 
 - Decompress gzip by button.
 
-[unreleased]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.5.0...v1.1.0
+[unreleased]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.5.0...v1.0.0
 [0.5.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v0.2.0...v0.3.0
