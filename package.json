@@ -42,6 +42,10 @@
 				}
 			},
 			{
+				"command": "gz.decompress.plain",
+				"title": "gzip decompress to plain"
+			},
+			{
 			  "command": "gz.dialogopen",
 			  "title": "Show content of the selected .gz in an Open dialog"
 			}
@@ -58,6 +62,10 @@
 			  {
 				"command": "gz.decompress",
 				"when": "resourceExtname == .gz"
+			  },
+			  {
+				  "command": "gz.decompress.plain",
+				  "when": "resourceExtname == .gz"
 			  }
 			],
 			"editor/title/context": [

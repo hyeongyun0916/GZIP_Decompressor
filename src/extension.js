@@ -20,7 +20,8 @@ function activate(context) {
 	console.log('Congratulations, your extension "gzipdecompressor" is now active!', process.platform);
 
 	const myScheme = 'gz.decompress';
-	const ext = '.log';
+	const logExt = '.log';
+	const gzExt = '.gz';
 	const myProvider = new class {
 		constructor() {
 			// emitter and its event
@@ -28,8 +29,10 @@ function activate(context) {
 			this.onDidChange = this.onDidChangeEmitter.event;
 		}
 
-		async provideTextDocumentContent(uri) {
-			let fileData = await this.readFile(uri.path.slice(0, ext.length * -1));
+		async provideTextDocumentContent(uri, isPlain) {
+			uri = uri.path.substr(logExt.length * -1) == logExt ? uri.path.slice(0, logExt.length * -1) : uri.path;
+			uri += gzExt;
+			let fileData = await this.readFile(uri);
 			return fileData;
 		}
 
@@ -54,13 +57,19 @@ function activate(context) {
 		}
 	};
 
-	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(myScheme, myProvider));
+	async function decompressLog(uri) {
+		decompress(false, uri)
+	}
 
-	context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', async (uri) => {
+	async function decompressPlain(uri) {
+		decompress(true, uri)
+	}
+
+	async function decompress(isPlain, uri) {
 		if (uri == undefined) {
 			let w = vscode.window;
 			if (w.activeTextEditor == undefined
-				 || w.activeTextEditor.document.uri.path.substr(-3) != '.gz') {
+				|| w.activeTextEditor.document.uri.path.substr(gzExt.length) != gzExt) {
 				uri = await vscode.window.showInputBox({
 					prompt: "Enter value in gzip",
 					placeHolder: "address",
@@ -72,10 +81,15 @@ function activate(context) {
 			}
 		};
 		let path = process.platform == 'win32' ? uri.path.substr(1).replace(/\//g, '\\') : uri.path;
-		let newUri = vscode.Uri.parse(myScheme + ':' + path + ext);
+		let newUri = vscode.Uri.parse(myScheme + ':' + path.slice(0, gzExt.length * -1) + (isPlain ? '' : logExt));
 		let doc = await vscode.workspace.openTextDocument(newUri);
 		await vscode.window.showTextDocument(doc, { preview: false });
-	}));
+	}
+
+	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(myScheme, myProvider));
+
+	context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', decompressLog));
+	context.subscriptions.push(vscode.commands.registerCommand('gz.decompress.plain', decompressPlain));
 
     context.subscriptions.push(vscode.commands.registerCommand('gz.dialogopen', () => {
         vscode.window.showOpenDialog({canSelectMany: true, canSelectFolders: false, filters: {'gz': ['gz']}}).then(fileUris => {
