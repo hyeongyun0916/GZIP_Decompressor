@@ -4,7 +4,7 @@
 	"description": "gzip decompressor",
 	"license": "LICENSE",
 	"icon": "images/icon.png",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"publisher": "HyunKyunMoon",
 	"bugs": {
 		"url": "https://github.com/hyeongyun0916/GZIP_Decompressor/issues"
@@ -37,8 +37,8 @@
 				"command": "gz.decompress",
 				"title": "gzip decompress",
 				"icon": {
-				  "light": "./images/gz-icon.svg",
-				  "dark": "./images/gz-icon-dark.svg"
+					"light": "./images/gz-icon.svg",
+					"dark": "./images/gz-icon-dark.svg"
 				}
 			},
 			{
@@ -69,10 +69,10 @@
 			  }
 			],
 			"editor/title/context": [
-			  {
-				"command": "gz.decompress",
-				"when": "resourceExtname == .gz"
-			  }
+				{
+					"command": "gz.decompress",
+					"when": "resourceExtname == .gz"
+				}
 			]
 		}
 	},
