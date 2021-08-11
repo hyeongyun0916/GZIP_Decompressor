@@ -35,19 +35,15 @@
 		"commands": [
 			{
 				"command": "gz.decompress",
-				"title": "gzip decompress",
+				"title": "GZIP: Decompress",
 				"icon": {
 					"light": "./images/gz-icon.svg",
 					"dark": "./images/gz-icon-dark.svg"
 				}
 			},
 			{
-				"command": "gz.decompress.plain",
-				"title": "gzip decompress to plain"
-			},
-			{
 				"command": "gz.dialogopen",
-				"title": "Show content of the selected .gz in an Open dialog"
+				"title": "GZIP: Decompress multiple files"
 			}
 		],
 		"menus": {
@@ -61,10 +57,6 @@
 			"explorer/context": [
 				{
 					"command": "gz.decompress",
-					"when": "resourceExtname == .gz"
-				},
-				{
-					"command": "gz.decompress.plain",
 					"when": "resourceExtname == .gz"
 				}
 			],
