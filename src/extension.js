@@ -20,7 +20,8 @@ function activate(context) {
 	console.log('Congratulations, your extension "gzipdecompressor" is now active!', process.platform);
 
 	const myScheme = 'gz.decompress';
-
+	const logExt = '.log';
+	const gzExt = '.gz';
 	const myProvider = new class {
 		constructor() {
 			// emitter and its event
@@ -28,8 +29,11 @@ function activate(context) {
 			this.onDidChange = this.onDidChangeEmitter.event;
 		}
 
-		async provideTextDocumentContent(uri) {
-			return await this.readFile(vscode.Uri.file(uri.path).fsPath);
+		async provideTextDocumentContent(uri, isPlain) {
+			uri = uri.path.substr(logExt.length * -1) == logExt ? uri.path.slice(0, logExt.length * -1) : uri.path;
+			uri += gzExt;
+			let fileData = await this.readFile(uri);
+			return fileData;
 		}
 
 		async readFile(fileUri) {
@@ -53,51 +57,51 @@ function activate(context) {
 		}
 	};
 
-	async function decompress(uri) {
+	async function decompressLog(uri) {
+		decompress(false, uri)
+	}
+
+	async function decompressPlain(uri) {
+		decompress(true, uri)
+	}
+
+	async function decompress(isPlain, uri) {
 		if (uri == undefined) {
 			let w = vscode.window;
-			if (w.activeTextEditor == undefined) {
-				uri = await w.showOpenDialog({
-					canSelectFiles: true,
-					canSelectFolders: false,
-					canSelectMany: false,
-					filters: {
-						'GZIP files': ['gz'],
-						'Any files': ['*'],
-					}
+			if (w.activeTextEditor == undefined
+				|| w.activeTextEditor.document.uri.path.substr(gzExt.length) != gzExt) {
+				uri = await vscode.window.showInputBox({
+					prompt: "Enter value in gzip",
+					placeHolder: "address",
+					value: vscode.workspace.rootPath
 				});
-
-				if (uri != undefined) uri = uri[0];
-				else return;
+				uri = vscode.Uri.file(uri == undefined ? '' : uri);
 			} else {
 				uri = w.activeTextEditor.document.uri;
 			}
 		};
-		let newUri = vscode.Uri.parse(myScheme + ':' + uri.path);
+		let path = process.platform == 'win32' ? uri.path.substr(1).replace(/\//g, '\\') : uri.path;
+		let newUri = vscode.Uri.parse(myScheme + ':' + path.slice(0, gzExt.length * -1) + (isPlain ? '' : logExt));
 		let doc = await vscode.workspace.openTextDocument(newUri);
 		await vscode.window.showTextDocument(doc, { preview: false });
 	}
 
 	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(myScheme, myProvider));
 
-	context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', decompress));
+	context.subscriptions.push(vscode.commands.registerCommand('gz.decompress', decompressLog));
+	context.subscriptions.push(vscode.commands.registerCommand('gz.decompress.plain', decompressPlain));
 
-	context.subscriptions.push(vscode.commands.registerCommand('gz.dialogopen', () => {
-		vscode.window.showOpenDialog({
-			canSelectMany: true,
-			canSelectFolders: false,
-			filters: {
-				'GZIP files': ['gz'],
-				'Any files': ['*'],
-			}
-		}).then(fileUris => {
+    context.subscriptions.push(vscode.commands.registerCommand('gz.dialogopen', () => {
+        vscode.window.showOpenDialog({canSelectMany: true, canSelectFolders: false, filters: {'gz': ['gz']}}).then(fileUris => {
 			if (fileUris)
 				fileUris.forEach(function (fileUri) {
 					vscode.commands.executeCommand('gz.decompress', fileUri);
 				});
-		});
-	}));
+        });
+    }));
 }
+
+exports.activate = activate;
 
 // this method is called when your extension is deactivated
 function deactivate() { }
