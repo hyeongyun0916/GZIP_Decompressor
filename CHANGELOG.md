@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [1.3.0] - 2024-04-08
+
+### Added
+
+- Allow decompressing gzip file with any extensions in https://github.com/hyeongyun0916/GZIP_Decompressor/pull/7
+
+**Full Changelog**: https://github.com/hyeongyun0916/GZIP_Decompressor/compare/v1.2.0...v1.3.0
+
 ## [1.2.0] - 2021-02-09
 
 ### Added
